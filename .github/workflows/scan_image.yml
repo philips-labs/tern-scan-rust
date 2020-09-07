@@ -15,3 +15,13 @@ jobs:
         with:
           name: tern 
           path: ${{ steps.scan.outputs.file }} 
+      - uses: philips-labs/tern-action@v1.0.0
+        id: scan2
+        with:
+          image: rust:1.46.0 
+          format: human
+          output: rust.human
+      - uses: actions/upload-artifact@v2
+        with:
+          name: tern 
+          path: ${{ steps.scan2.outputs.file }} 
