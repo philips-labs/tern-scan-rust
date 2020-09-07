@@ -9,8 +9,8 @@ jobs:
         id: scan2
         with:
           image: rust:1.46.0 
-          format: human
-          output: rust.human
+          format: json
+          output: rust.json
       - uses: actions/upload-artifact@v2
         with:
           name: tern 
