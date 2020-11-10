@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: philips-labs/tern-action@v1.0.0
-        id: scan2
+        id: scan
         with:
           image: rust:1.46.0 
           format: json
@@ -14,4 +14,15 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: tern 
-          path: ${{ steps.scan2.outputs.file }} 
+          path: ${{ steps.scan.outputs.file }} 
+      - uses: philips-labs/tern-action@add-scancode
+        id: scan-scancode
+        with:
+          image: rust:1.46.0 
+          format: json
+          output: rust.json
+          scancode: true
+      - uses: actions/upload-artifact@v2
+        with:
+          name: tern
+          path: ${{ steps.scan2.outputs.file }} :  
