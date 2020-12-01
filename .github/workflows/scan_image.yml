@@ -9,20 +9,9 @@ jobs:
         id: scan
         with:
           image: rust:1.46.0 
-          format: json
-          output: rust.json
+          format: spdx
+          output: rust.spdx
       - uses: actions/upload-artifact@v2
         with:
           name: tern 
           path: ${{ steps.scan.outputs.file }} 
-      - uses: philips-labs/tern-action@add-scancode
-        id: scan2
-        with:
-          image: rust:1.46.0 
-          format: json
-          output: rust.json
-          scancode: 'true'
-      - uses: actions/upload-artifact@v2
-        with:
-          name: tern
-          path: ${{ steps.scan2.outputs.file }}
