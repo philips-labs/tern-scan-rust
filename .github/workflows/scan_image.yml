@@ -9,7 +9,7 @@ jobs:
         id: scan
         with:
           image: rust:1.46.0 
-          format: spdx
+          format: spdxtagvalue
           output: rust.spdx
       - uses: actions/upload-artifact@v2
         with:
