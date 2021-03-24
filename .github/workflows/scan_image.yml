@@ -5,7 +5,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: philips-labs/tern-action@tern-2.4.0
+      - uses: philips-labs/tern-action@jamiemagee
         id: scan
         with:
           image: rust:1.46.0 
