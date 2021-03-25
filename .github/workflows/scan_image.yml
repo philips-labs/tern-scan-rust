@@ -1,16 +1,30 @@
 name: build 
-on: [push]
+on: 
+  workflow_dispatch:
+    inputs:
+      docker_image:
+        description: 'docker-image to scan'     
+        default: 'rust:1.46.0'
+        required: false
+      output_file:
+        description: 'output file'     
+        default: 'rust.spdx'
+        required: false
+      output_type:
+        description: 'output type'     
+        default: 'spdxtagvalue'
+        required: false
 
 jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: philips-labs/tern-action@v1.2.0
+      - uses: philips-labs/tern-action@jamiemagee
         id: scan
         with:
-          image: rust:1.46.0 
-          format: spdxtagvalue
-          output: rust.spdx
+          image: ${{ github.event.inputs.docker_image }}
+          format: ${{ github.event.inputs.output_type }}
+          output: ${{ github.event.inputs.output_file }}
       - uses: actions/upload-artifact@v2
         with:
           name: tern 
