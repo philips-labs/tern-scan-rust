@@ -3,13 +3,13 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      docker-image:
+      docker_image:
         description: 'docker-image to scan'     
         default: 'rust:1.46.0'
-      output-file:
+      output_file:
         description: 'output file'     
         default: 'rust.spdx'
-      output-type:
+      output_type:
         description: 'output type'     
         default: 'spdxtagvalue'
 
@@ -20,9 +20,9 @@ jobs:
       - uses: philips-labs/tern-action@jamiemagee
         id: scan
         with:
-          image: rust:1.46.0 
-          format: spdxtagvalue
-          output: rust.spdx
+          image: ${{ github.event.inputs.docker_image }}
+          format: ${{ github.event.inputs.output_type }}
+          output: ${{ github.event.inputs.output_file }}
       - uses: actions/upload-artifact@v2
         with:
           name: tern 
