@@ -1,17 +1,19 @@
 name: build 
 on: 
-  push:
   workflow_dispatch:
     inputs:
       docker_image:
         description: 'docker-image to scan'     
         default: 'rust:1.46.0'
+        required: false
       output_file:
         description: 'output file'     
         default: 'rust.spdx'
+        required: false
       output_type:
         description: 'output type'     
         default: 'spdxtagvalue'
+        required: false
 
 jobs:
   scan:
