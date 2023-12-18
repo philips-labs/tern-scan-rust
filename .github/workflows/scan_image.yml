@@ -25,7 +25,7 @@ jobs:
           image: ${{ github.event.inputs.docker_image }}
           format: ${{ github.event.inputs.output_type }}
           output: ${{ github.event.inputs.output_file }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: tern 
           path: ${{ steps.scan.outputs.file }} 
